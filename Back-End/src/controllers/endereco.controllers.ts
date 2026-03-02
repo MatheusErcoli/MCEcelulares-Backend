@@ -24,7 +24,7 @@ class EnderecoController {
     static async create(req: Request, res: Response) {
 
         const {
-            id_cliente,
+            id_usuario,
             endereco,
             numero,
             complemento,
@@ -35,7 +35,7 @@ class EnderecoController {
         } = req.body;
 
         const novoEndereco = await Endereco.create({
-            id_cliente,
+            id_usuario,
             endereco,
             numero,
             complemento,

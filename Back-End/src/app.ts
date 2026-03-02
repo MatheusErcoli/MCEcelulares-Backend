@@ -4,6 +4,7 @@ import CategoriaController from "./controllers/categoria.controllers";
 import ProdutoController from "./controllers/produto.controllers";
 import UsuarioController from "./controllers/usuario.controllers";
 import EnderecoController from "./controllers/endereco.controllers";
+import CarrinhoController from "./controllers/carrinho.controllers";
 
 const app = express();
 app.use(express.json());
@@ -33,6 +34,10 @@ router.get("/usuario/:id", UsuarioController.getById);
 router.get('/endereco', EnderecoController.findAll);
 router.post('/endereco', EnderecoController.create);
 router.get('/endereco/:id', EnderecoController.getById);
+
+router.get('/carrinho', CarrinhoController.findAll);
+router.post('/carrinho', CarrinhoController.create);
+router.get('/carrinho/:id', CarrinhoController.getById);
 
 app.use(router);
 
