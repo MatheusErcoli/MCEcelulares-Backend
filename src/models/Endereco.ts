@@ -4,7 +4,7 @@ import Usuario from "./Usuario";
 
 class Endereco extends Model{
     public id_endereco!: number;
-    public id_cliente!: number;
+    public id_usuario!: number;
     public endereco!: string;
     public numero!: string;
     public complemento!: string;
@@ -20,7 +20,7 @@ Endereco.init({
         autoIncrement: true,
         primaryKey: true
     },
-    id_cliente: {
+    id_usuario: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -54,7 +54,7 @@ Endereco.init({
 });
 
 Endereco.belongsTo(Usuario, {
-    foreignKey: "id_cliente",
+    foreignKey: "id_usuario",
     as: "usuario"
 });
 
