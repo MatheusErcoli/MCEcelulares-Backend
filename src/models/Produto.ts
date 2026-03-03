@@ -3,6 +3,7 @@ import sequelize from '../config/database';
 import Categoria from './Categoria';
 import Marca from './Marca';
 import ItemCarrinho from './ItemCarrinho';
+import ItemPedido from './ItemPedido';
 
 class Produto extends Model {
     public id_produto!: number;
@@ -75,6 +76,11 @@ Produto.belongsTo(Categoria,{
 Produto.hasMany(ItemCarrinho, {
     foreignKey: 'id_produto',
     as: 'itensCarrinho'
+});
+
+Produto.hasMany(ItemPedido, {
+    foreignKey: 'id_produto',
+    as: 'itensPedido'
 });
 
 export default Produto;
