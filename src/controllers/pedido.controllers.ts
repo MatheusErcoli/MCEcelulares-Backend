@@ -1,0 +1,56 @@
+import { Request, Response } from "express";
+import Pedido from "../models/Pedido";
+import Usuario from "../models/Usuario";
+import Funcionario from "../models/Funcionario";
+import { Model } from "sequelize";
+import ItemCarrinho from "../models/ItemCarrinho";
+import ItemPedido from "../models/ItemPedido";
+
+class PedidoController {
+
+    static async findAll(req: Request, res: Response){
+        const pedidos = await Pedido.findAll({
+            where: {
+                ativo: true
+            },
+            include: [
+                {model: Usuario, as : 'usuario'},
+                {model: Funcionario, as : 'funcionario'},
+                {model: ItemPedido, as : 'itens'}
+            ]
+        });
+
+        res.json(pedidos);
+    }
+
+    static async findById(req: Request, res: Response){
+        const { id } = req.params;
+
+        const pedido = await Pedido.findByPk(Number(id), {
+            include: [
+                {model: Usuario, as : 'usuario'},
+                {model: Funcionario, as : 'funcionario'},
+                {model: ItemPedido, as : 'itens'}
+            ]
+        });
+
+        res.json(pedido);
+    }
+
+    static async create(req: Request, res: Response){
+        const { id_usuario, id_funcionario, valor_total } = req.body;
+
+        const pedido = await Pedido.create({
+            id_usuario,
+            id_funcionario,
+            valor_total,
+            ativo: true,
+            status: "CRIADO"
+        });
+
+        res.status(201).json(pedido);
+    }
+
+}
+
+export default PedidoController;

@@ -3,6 +3,7 @@ import sequelize from "../config/database";
 import Usuario from "./Usuario";
 import Endereco from "./Endereco";
 import ItemPedido from "./ItemPedido";
+import Funcionario from "./Funcionario";
 
 class Pedido extends Model {
   public id_pedido!: number;

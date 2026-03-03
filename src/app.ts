@@ -6,6 +6,10 @@ import UsuarioController from "./controllers/usuario.controllers";
 import EnderecoController from "./controllers/endereco.controllers";
 import CarrinhoController from "./controllers/carrinho.controllers";
 import ItemCarrinhoController from "./controllers/itemcarrinho.controllers";
+import PedidoController from "./controllers/pedido.controllers";
+import ItemPedidoController from "./controllers/itempedido.controllers";
+import PagamentoController from "./controllers/pagamento.controllers";
+import FuncionarioController from "./controllers/funcionario.controllers";
 
 const app = express();
 app.use(express.json());
@@ -43,6 +47,22 @@ router.get('/carrinho/:id', CarrinhoController.getById);
 router.get('/itemcarrinho', ItemCarrinhoController.findAll);
 router.post('/itemcarrinho', ItemCarrinhoController.create);
 router.get('/itemcarrinho/:id', ItemCarrinhoController.getById);
+
+router.get('/pedido', PedidoController.findAll);
+router.post('/pedido', PedidoController.create);
+router.get('/pedido/:id', PedidoController.findById);
+
+router.get('/itempedido', ItemPedidoController.findAll);
+router.post('/itempedido', ItemPedidoController.create);
+router.get('/itempedido/:id', ItemPedidoController.findById);
+
+router.get('/pagamento', PagamentoController.findAll);
+router.post('/pagamento', PagamentoController.create);
+router.get('/pagamento/:id', PagamentoController.findById);
+
+router.get('/funcionario', FuncionarioController.findAll);
+router.post('/funcionario', FuncionarioController.create);
+router.get('/funcionario/:id', FuncionarioController.findById);
 
 app.use(router);
 
