@@ -31,9 +31,14 @@ Pagamento.init({
     data_pagamento: {
         type: DataTypes.DATE,
     },
-    status: {
-        type: DataTypes.STRING,
-        allowNull: false,
+     status: {
+        type: DataTypes.ENUM(
+            "PENDENTE",
+            "PROCESSANDO",
+            "PAGO",
+            "RECUSADO",
+            "CANCELADO"
+        ),
         defaultValue: "PENDENTE"
     }
 }, {

@@ -11,7 +11,8 @@ class Pedido extends Model {
   public status!: string;
 }
 
-Pedido.init({
+Pedido.init(
+  {
     id_pedido: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -37,15 +38,22 @@ Pedido.init({
       defaultValue: true,
     },
     status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "CRIADO"
+      type: DataTypes.ENUM(
+        "CRIADO",
+        "AGUARDANDO_PAGAMENTO",
+        "PAGO",
+        "ENVIADO",
+        "ENTREGUE",
+        "CANCELADO",
+      ),
+      defaultValue: "CRIADO",
     },
   },
   {
     sequelize,
     tableName: "pedido",
     timestamps: false,
-});
+  },
+);
 
 export default Pedido;
